@@ -47,22 +47,22 @@ MySQL
 Optimisation SEO
 ## Scénarios d'Utilisateurs
 ##### Administrateur :
-En tant qu'administrateur, je souhaite pouvoir ajouter de nouveaux produits en fournissant des détails tels que le nom, la description, le prix et les images.
-En tant qu'administrateur, je souhaite pouvoir modifier les informations des produits existants, y compris les descriptions, les prix et les images.
-En tant qu'administrateur, je souhaite pouvoir supprimer des produits du catalogue si nécessaire.
-En tant qu'administrateur, je souhaite pouvoir consulter toutes les commandes passées par les utilisateurs.
-En tant qu'administrateur, je souhaite développer un panier d'achat convivial pour que les utilisateurs puissent facilement gérer leurs sélections.
-En tant qu'administrateur, je souhaite intégrer des méthodes de paiement sécurisées pour garantir des transactions sûres.
-En tant qu'administrateur, je souhaite avoir accès à un tableau de bord centralisé pour gérer les produits, les commandes et les utilisateurs.
+- En tant qu'administrateur, je souhaite pouvoir ajouter de nouveaux produits en fournissant des détails tels que le nom, la description, le prix et les images.
+- En tant qu'administrateur, je souhaite pouvoir modifier les informations des produits existants, y compris les descriptions, les prix et les images.
+- En tant qu'administrateur, je souhaite pouvoir supprimer des produits du catalogue si nécessaire.
+- En tant qu'administrateur, je souhaite pouvoir consulter toutes les commandes passées par les utilisateurs.
+- En tant qu'administrateur, je souhaite développer un panier d'achat convivial pour que les utilisateurs puissent facilement gérer leurs sélections.
+- En tant qu'administrateur, je souhaite intégrer des méthodes de paiement sécurisées pour garantir des transactions sûres.
+- En tant qu'administrateur, je souhaite avoir accès à un tableau de bord centralisé pour gérer les produits, les commandes et les utilisateurs.
 ##### Clients :
-En tant qu'utilisateur, je souhaite m'inscrire sur la plateforme en fournissant des informations de base.
-En tant qu'utilisateur, je souhaite me connecter à mon compte avec mes identifiants pour accéder aux fonctionnalités personnalisées.
-En tant qu'utilisateur, je souhaite parcourir facilement le catalogue de produits, avec des fonctionnalités de filtrage et de recherche pour trouver des articles spécifiques.
-En tant qu'utilisateur, je souhaite consulter les détails d'un produit, y compris des images, une description complète et le prix.
-En tant qu'utilisateur, je souhaite pouvoir ajouter des produits à mon panier d'achat et voir un récapitulatif clair des articles sélectionnés.
-En tant qu'utilisateur, je souhaite pouvoir annuler des produits si nécessaire.
-En tant qu'utilisateur, je souhaite pouvoir passer une commande en fournissant des détails de livraison et en effectuant le paiement de manière sécurisée.
-En tant qu'utilisateur, je souhaite recevoir une notification de confirmation une fois ma commande passée.
+- En tant qu'utilisateur, je souhaite m'inscrire sur la plateforme en fournissant des informations de base.
+- En tant qu'utilisateur, je souhaite me connecter à mon compte avec mes identifiants pour accéder aux fonctionnalités personnalisées.
+- En tant qu'utilisateur, je souhaite parcourir facilement le catalogue de produits, avec des fonctionnalités de filtrage et de recherche pour trouver des articles spécifiques.
+- En tant qu'utilisateur, je souhaite consulter les détails d'un produit, y compris des images, une description complète et le prix.
+- En tant qu'utilisateur, je souhaite pouvoir ajouter des produits à mon panier d'achat et voir un récapitulatif clair des articles sélectionnés.
+- En tant qu'utilisateur, je souhaite pouvoir annuler des produits si nécessaire.
+- En tant qu'utilisateur, je souhaite pouvoir passer une commande en fournissant des détails de livraison et en effectuant le paiement de manière sécurisée.
+- En tant qu'utilisateur, je souhaite recevoir une notification de confirmation une fois ma commande passée.
 ## Structure du Projet
 ##### Home :
 Page d'accueil présentant le site web et ses principales fonctionnalités, avec un moteur de recherche pour un accès rapide aux produits.
