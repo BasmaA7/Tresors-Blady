@@ -7,60 +7,85 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# TrésorsBlady
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Bienvenue sur TrésorsBlady, votre destination en ligne pour des produits artisanaux marocains authentiques. Plongez-vous dans la riche tradition et créativité de l'artisanat marocain, le tout depuis le confort de votre foyer.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Table of Contents
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+1- Aperçu
+2- Fonctionnalités
+3- Technologies Utilisées
+4- Scénarios d'Utilisateurs
+5- Structure du Projet
+6- Installation
+7- Utilisation
+8- Contributions
+9- License
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Aperçu
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+TrésorsBlady est une plateforme dédiée à la promotion et la préservation des produits artisanaux marocains. Notre objectif est de fournir une expérience d'achat exceptionnelle, éthique et immersive pour nos utilisateurs. Que vous soyez un passionné de l'artisanat ou simplement curieux de découvrir le riche patrimoine du Maroc, TrésorsBlady a quelque chose pour vous.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+## Fonctionnalités
+- Parcourir une large gamme de produits artisanaux marocains authentiques.
+- Filtrer et rechercher des articles spécifiques en fonction des catégories.
+- Consulter des descriptions détaillées des produits, y compris des images et des prix.
+- Ajouter des produits à votre panier d'achat et gérer vos sélections.
+- Passer des commandes en toute sécurité avec des options de paiement.
+- Interface conviviale pour une navigation et une expérience d'achat faciles.
+## Technologies Utilisées
+##### Frontend: 
+HTML, CSS/Tailwind CSS, JavaScript
+##### Backend: 
+PHP (Laravel)
+##### Base de Données: 
+MySQL
+##### Autres: 
+Optimisation SEO
+## Scénarios d'Utilisateurs
+##### Administrateur :
+En tant qu'administrateur, je souhaite pouvoir ajouter de nouveaux produits en fournissant des détails tels que le nom, la description, le prix et les images.
+En tant qu'administrateur, je souhaite pouvoir modifier les informations des produits existants, y compris les descriptions, les prix et les images.
+En tant qu'administrateur, je souhaite pouvoir supprimer des produits du catalogue si nécessaire.
+En tant qu'administrateur, je souhaite pouvoir consulter toutes les commandes passées par les utilisateurs.
+En tant qu'administrateur, je souhaite développer un panier d'achat convivial pour que les utilisateurs puissent facilement gérer leurs sélections.
+En tant qu'administrateur, je souhaite intégrer des méthodes de paiement sécurisées pour garantir des transactions sûres.
+En tant qu'administrateur, je souhaite avoir accès à un tableau de bord centralisé pour gérer les produits, les commandes et les utilisateurs.
+##### Clients :
+En tant qu'utilisateur, je souhaite m'inscrire sur la plateforme en fournissant des informations de base.
+En tant qu'utilisateur, je souhaite me connecter à mon compte avec mes identifiants pour accéder aux fonctionnalités personnalisées.
+En tant qu'utilisateur, je souhaite parcourir facilement le catalogue de produits, avec des fonctionnalités de filtrage et de recherche pour trouver des articles spécifiques.
+En tant qu'utilisateur, je souhaite consulter les détails d'un produit, y compris des images, une description complète et le prix.
+En tant qu'utilisateur, je souhaite pouvoir ajouter des produits à mon panier d'achat et voir un récapitulatif clair des articles sélectionnés.
+En tant qu'utilisateur, je souhaite pouvoir annuler des produits si nécessaire.
+En tant qu'utilisateur, je souhaite pouvoir passer une commande en fournissant des détails de livraison et en effectuant le paiement de manière sécurisée.
+En tant qu'utilisateur, je souhaite recevoir une notification de confirmation une fois ma commande passée.
+## Structure du Projet
+##### Home :
+Page d'accueil présentant le site web et ses principales fonctionnalités, avec un moteur de recherche pour un accès rapide aux produits.
+##### About  :
+Présente brièvement le site web et ses objectifs, visant à renforcer la crédibilité et à établir la confiance avec les visiteurs en fournissant des informations clés sur l'entité représentée.
+##### Nos Produits :
+Affiche tous les produits disponibles sur le site, classés par catégories.
+##### Beauté Bio : 
+Offre une sélection de produits de beauté bio et de soins naturels, conçus pour sublimer votre peau tout en respectant l'environnement.
+##### Panier :
+Fournit un récapitulatif des articles sélectionnés par l'utilisateur pour achat, permettant aux utilisateurs de visualiser, modifier les quantités, supprimer des articles ou passer à la caisse pour finaliser leur commande.
+##### FAQ :
+Offre des réponses claires et concises aux questions fréquemment posées par nos utilisateurs.
+##### Contact :
+Encourage les visiteurs à partager leurs retours et à poser des questions, afin de garantir une expérience client exceptionnelle.
+## Installation
+##### Cloner le dépôt :
+git clone https:```//github.com/votre-nom-utilisateur/tresorsblady.git```
+Installer les dépendances : ```composer install && npm install```
+Configurer vos variables d'environnement (connexion à la base de données, etc.).
+Exécuter les migrations : ``` php artisan migrate```
+Lancer l'application :```php artisan serve```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
