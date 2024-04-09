@@ -1,10 +1,6 @@
 @extends('layout.layout')
 @section('content')
 
-
- 
-
-
 <div class="bg-cover bg-center bg-fixed" style="background-image: url('https://chantiersdumaroc.ma/wp-content/uploads/2019/05/me%CC%81tiers-de-l%E2%80%99artisanat-au-Maroc.jpg')">
   <div class="h-screen flex justify-center items-center">
       <div class="bg-white mx-4 p-8 rounded shadow-md w-full md:w-1/2 lg:w-1/3">
