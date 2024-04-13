@@ -33,7 +33,7 @@
             </div>
             <div class="mb-4">
               <label for="image" class="block text-gray-700 text-sm font-bold mb-2">Image:</label>
-              <input type="file" name="image" id="productImage" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+              <input type="file" name="image"  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
             <div class="mb-4">
               <select class="form-control ml-2 outline-none py-1 px-2 text-md border-2 rounded-md w-full" name="category_id">
@@ -61,7 +61,7 @@
           <th class="text-left p-3 px-5">Description</th>
           <th class="text-left p-3 px-5">Price</th>
           <th class="text-left p-3 px-5">Quantity</th>
-          <th class="text-left p-3 px-5">Categorie</th>
+          <th class="text-left p-3 px-5">Category</th>
           <th class="text-left p-3 px-5">Image</th>
           <th class="text-left p-3 px-5">Action</th>
           <th></th>
@@ -72,7 +72,8 @@
           <td class="p-3 px-5">{{$product->name}}</td>
           <td class="p-3 px-5">{{$product->description}}</td>
           <td class="p-3 px-5">{{$product->price}}</td>
-          <td class="p-3 px-5">{{$product->category}}</td>
+          <td class="p-3 px-5">{{$product->quantity}}</td>
+          <td class="p-3 px-5">{{$product->category->title}}</td>
           <td class="p-3 px-5">
             @if ($product->image)
             <img src="{{ asset('storage/' . $product->image) }}" alt="Image for product" class="w-20 h-20">
@@ -81,8 +82,9 @@
             @endif
           </td>
           <td class="p-3 px-5 flex justify-end">
-            <button type="button" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Save</button>
-            <form action="{{route('categories.destroy',$product)}}" method="post">
+            {{-- <button type="button" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Save</button> --}}
+            <a href="{{ route('products.edit', $product->id) }}"> Edit</a>
+            <form action="{{route('products.destroy',$product)}}" method="post">
               @csrf
               @method('DELETE')
               <button type="submit" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Delete</button>
