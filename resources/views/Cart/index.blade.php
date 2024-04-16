@@ -145,7 +145,7 @@
                                         {{ $totalcart }}$
                                     </p>
                                 </div>
-                                <form action="" method="get">
+                                <form action="{{route('checkout')}}" method="get">
                                     @csrf
                                     <input type="hidden" name="quantity" value="{{ $count }}">
                                     <input type="hidden" name="total" value="{{ $totalcart }}">
