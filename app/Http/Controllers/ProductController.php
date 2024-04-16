@@ -14,7 +14,7 @@ class ProductController extends Controller
     protected $productRepository;
     protected $categoryRepository; 
 
-
+ 
     public function __construct(ProductRepositoryInterface $productRepository ,CategoryRepositoryInterface $categoryRepository)
     {
         $this->productRepository = $productRepository;
@@ -47,7 +47,7 @@ class ProductController extends Controller
         
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('product', 'public');
-            $validatedData['image'] = $imagePath; // Mettre à jour le chemin d'accès à l'image dans les données validées
+            $validatedData['image'] = $imagePath; 
         }
         
         $product = $this->productRepository->create($validatedData);

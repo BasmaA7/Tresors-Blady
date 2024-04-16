@@ -81,9 +81,8 @@
             No Image
             @endif
           </td>
-          <td class="p-3 px-5 flex justify-end">
-            {{-- <button type="button" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Save</button> --}}
-            <a href="{{ route('products.edit', $product->id) }}"> Edit</a>
+          <td class="p-3 px-5 flex ">
+            <a   class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"    href="{{ route('products.edit', $product->id) }}"> Edit</a>
             <form action="{{route('products.destroy',$product)}}" method="post">
               @csrf
               @method('DELETE')

@@ -33,6 +33,7 @@
   </div>
 
   <div class="px-3 py-4 flex justify-center">
+    <x-alert />
       <table class="w-full text-md bg-white shadow-md rounded mb-4">
           <tbody>
               <tr class="border-b">
@@ -53,9 +54,8 @@
                     No Image
                 @endif
                   </td>
-                  <td class="p-3 px-5 flex justify-end">
-                    {{-- <button type="button"  class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Edit</button> --}}
-                    <a href="{{ route('categories.edit', $categorie->id) }}"> Edit</a>
+                  <td class="p-3 px-5 flex ">
+                    <a  class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"   href="{{ route('categories.edit', $categorie->id) }}"> Edit</a>
                     <form action="{{route('categories.destroy',$categorie)}}" method="post">
                       @csrf
                       @method('DELETE')

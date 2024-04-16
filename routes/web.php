@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
@@ -26,7 +27,7 @@ Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->na
 Route::post('/register', [RegisterController::class, 'register']);
 Route::get('/login', [LoginController::class, 'showLogin'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout'); 
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::resource('products', ProductController::class);
 Route::resource('categories', CategorieController::class);
@@ -38,3 +39,8 @@ Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLink
 Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('/reset-password', [ResetPasswordController::class, 'reset']);
 Route::get('/dashboard',[ProductController::class,'showDash'])->name('showDash');
+
+Route::get('/addproduct',[CartController::class,'addToCart'])->name('add.cart');
+Route::post('/addproduct', [CartController::class, 'store'])->name('add.cart');
+Route::get('/cart', [CartController::class, 'index'])->name('Cart.index');
+Route::post('/cart/delete', [CartController::class, 'destroy'])->name('cart.destroy');

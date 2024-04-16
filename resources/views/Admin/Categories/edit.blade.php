@@ -3,7 +3,10 @@
 
 @extends('layout.dashboard')
 @section('content')
+<div>
+  <x-alert />
 
+</div>
 <form action="{{ route('categories.update', $category->id) }}" method="POST" enctype="multipart/form-data">
   @csrf
   @method('PUT')  

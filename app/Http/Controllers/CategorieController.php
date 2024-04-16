@@ -27,7 +27,7 @@ class CategorieController extends Controller
     public function show($id)
     {
         $category = $this->categoryRepository->find($id);
-        return view('Admin.Categories.show', compact('category'));
+        return view('Admin.Categories.index', compact('category'));
     }
 
     public function create()
@@ -88,7 +88,11 @@ class CategorieController extends Controller
     public function destroy($id)
     {
         $this->categoryRepository->delete($id);
-
-        return redirect()->route('categories.index')->with('success', 'Category deleted successfully');
+    
+        // Récupérer à nouveau toutes les catégories après la suppression
+        $categories = $this->categoryRepository->all();
+    
+        return redirect()->route('categories.index')->with('success', 'Category deleted successfully')->with('categories', $categories);
     }
+    
 }
