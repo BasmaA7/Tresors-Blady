@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('payements', function (Blueprint $table) {
             $table->id();
             $table->string('payment_id');
-            $table->string('product_name');
+         
+            $table->integer('order_id');
             $table->string('quantity');
             $table->string('amount');
             $table->string('currency');
@@ -31,5 +32,7 @@ return new class extends Migration
     public function down(): void
     {
         //
+        Schema::dropIfExists('payements');
+
     }
 };

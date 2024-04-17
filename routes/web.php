@@ -33,7 +33,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::resource('products', ProductController::class);
 Route::resource('categories', CategorieController::class);
 
-Route::get('/home',[HomeController::class,'index'])->name('home');
+Route::get('/',[HomeController::class,'index'])->name('home');
 
 Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('showLinkRequestForm');
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
@@ -45,5 +45,6 @@ Route::get('/addproduct',[CartController::class,'addToCart'])->name('add.cart');
 Route::post('/addproduct', [CartController::class, 'store'])->name('add.cart');
 Route::get('/cart', [CartController::class, 'index'])->name('Cart.index');
 Route::post('/cart/delete', [CartController::class, 'destroy'])->name('cart.destroy');
-Route::get('/succes', [MollieController::class, 'succes'])->name('succes');
+Route::get('/success', [MollieController::class, 'succes'])->name('success');
 Route::get('/checkout', [MollieController::class, 'mollie'])->name('checkout');
+// Route::get('/cart', 'OrderController@thankYou')->name('checkout.thankYou');

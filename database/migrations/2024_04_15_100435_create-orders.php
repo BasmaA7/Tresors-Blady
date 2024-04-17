@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->boolean("status")->default(0);
             $table->foreign('user_id')->references('id')->on('users'); 
-            $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products'); 
             $table->string('total_amount');
             $table->timestamps();
+
+            
         });
     }
 
@@ -28,5 +29,7 @@ return new class extends Migration
     public function down(): void
     {
         //
+        Schema::dropIfExists('orders');
+
     }
 };

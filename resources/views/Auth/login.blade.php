@@ -8,6 +8,8 @@
           <form class="space-y-6" action="{{route('login')}}" method="POST">
             @csrf
             <div class="mb-4">
+              <x-alert />
+
                   <label class="block font-semibold text-gray-700 mb-2" for="email">
                       Email Address
                   </label>

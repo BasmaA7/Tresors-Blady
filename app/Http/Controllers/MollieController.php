@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Mollie\Laravel\Facades\Mollie;
 use App\Models\Payement;
+use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -10,26 +11,29 @@ class MollieController extends Controller
 {
     public function mollie(Request $request)
     {
+        $user = Auth::user();
+        $amount = $user->products->sum('price');
+      
+
+         
+         
+        
+        // Make sure currency code is in uppercase
+        $currency = "EUR";
+        
+        // Create payment with Mollie API
+        $payment = Mollie::api()->payments->create([
+            "amount" => [
+                "currency" => $currency,
+                "value" => number_format( $amount, 2, '.', ''),
+            ],
+            "description" => "Payment for your product",
+            "redirectUrl" => route('success'),
+        ]);
+
+        session()->put('paymentId', $payment->id);
         
 
-
-        $order_total_number = number_format($request->total, 2);      
-        $total = str_replace(',', '', $order_total_number);
-                $payment = Mollie::api()->payments->create([
-                
-                "amount" => [
-                    "currency" => "EUR",
-                    "value" => $total, 
-                ],
-
-                "description" => "Payement for your product",
-                "redirectUrl" => route('succes'),
-            ]);
-
-
-
-            session()->put('paymentId', $payment->id);
-            session()->put('quantity', $request->quantity );
 
             return redirect($payment->getCheckoutUrl(), 303);
     }
@@ -45,6 +49,14 @@ class MollieController extends Controller
         //dd($payment);
         if($payment->isPaid())
         {
+            $user = Auth::user();
+            $product_ids = $user->products->pluck('id');
+            $amount = $user->products->sum('price');
+            $order =  Order::create(["user_id"=> $user->id  , "total_amount" => $amount ,  "status" => 1]  );   
+            $order->products()->attach($product_ids);
+            $user->products()->sync([]);
+
+
             $obj = new Payement();
             $obj->payment_id = $paymentId;
             $obj->quantity = session()->get('quantity');
@@ -53,10 +65,11 @@ class MollieController extends Controller
             $obj->payment_status = "Completed";
             $obj->payment_method = "Mollie";
             // $obj->user_id = Auth::user()->id;
-            $obj->user_id = Auth::id();
+            $obj->user_id = Auth::id();     
+            $obj->order_id = $order->id;
 
             $obj->save();
-            session()->put('payement_id', $obj->id);
+            
 
 
             

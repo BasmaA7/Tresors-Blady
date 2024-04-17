@@ -29,6 +29,8 @@
                             </div>
                         </a>
                         <p class="lg:text-4xl text-3xl font-black leading-10 text-gray-800 dark:text-white pt-3">Cart:</p>
+                        <x-alert />
+
                         @foreach ($shopingcards as $cart)
                             <div class="md:flex items-strech py-8 md:py-10 lg:py-8 border-t border-gray-50 bg-bgColor">
                                 <div class="md: w-10 2xl:w-1/4 w-full flex justify-center">

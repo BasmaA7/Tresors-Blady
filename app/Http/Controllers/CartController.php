@@ -77,10 +77,42 @@ class CartController extends Controller
   
 
 
-    public function destroy(Request $request)
+    public function destroy(Request $request, $id)
     {
-        Cart::where('user_id', Auth::id())->where('product_id', $request->product_id)->delete();
+        Cart::where('user_id', Auth::id())->where('product_id', $id)->delete();
         $cartinfos = "Product was removed from cart";
         return redirect()->route('Cart.index')->with('cartinfos', $cartinfos);
     }
+    
+
+
+    // public function check(Request $request)
+    // {   
+    //     $product = Product::where('id', $request->product_id)->first();
+    //     $stock = $product->quantity;
+    //     if($request->number<=0){
+    //         $check = [
+    //             'check'=>"Enter a valid number",
+    //             'id'=>$request->product_id
+    //         ];
+    //     }
+    //     else if ($stock >= $request->number) {
+            
+    //         DB::table('shopingcards')
+    //         ->where('user_id',Auth::user()->id)
+    //         ->where('product_id',$request->product_id)
+    //         ->update(['quantity'=>$request->number]);
+    //         $check = [
+    //             'check'=>"in stock",
+    //             'id'=>$request->product_id
+    //         ];
+    //     } else {
+    //         $check = [
+    //             'check'=> $request->number . " " . " " . $request->product_name ." unavaible for now ",
+    //             'id'=>$request->product_id
+    //         ];
+    //     }
+
+    //     return redirect()->route('cart.index')->with('check', $check);
+    // }
 }
