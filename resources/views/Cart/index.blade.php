@@ -104,7 +104,7 @@
                                 </div>
                             </div>
                         @endforeach
-
+                       
                     </div>
                     <div class="lg:w-96 md:w-8/12 w-full bg-gray-100 dark:bg-gray-900 h-full">
                         <div
@@ -156,6 +156,7 @@
                                 </form>
 
                             </div>
+                        
                         </div>
                     </div>
                 </div>
@@ -163,6 +164,8 @@
 
         </div>
     @endif
+   
+    
     @if (session('cartinfos'))
         <div id="toast-success"
             class="fixed bottom-0 left-0 w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800">

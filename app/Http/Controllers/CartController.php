@@ -42,6 +42,9 @@ class CartController extends Controller
                 $cart->user_id = $user_id;
                 $cart->product_id = $product_id;
                 $cart->quantity = '1';
+    
+
+
                 $cart->save();
                 $cartInfo = "Product Added Successfully";
             }
@@ -115,4 +118,7 @@ class CartController extends Controller
 
     //     return redirect()->route('cart.index')->with('check', $check);
     // }
+    
+
+
 }

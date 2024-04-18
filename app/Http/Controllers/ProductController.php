@@ -5,6 +5,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProduct;
+use App\Models\Coupon;
 use App\Repositories\Categories\CategoryRepositoryInterface;
 use App\Repositories\Products\ProductRepositoryInterface;
 use Illuminate\Http\Request;
@@ -32,7 +33,8 @@ class ProductController extends Controller
     {
         $product = $this->productRepository->find($id);
         $categories = $this->categoryRepository->all();
-        return view('admin.products.index', compact('product', 'categories'));
+        return view('admin.products.SinglePage', compact('product', 'categories'));
+        // return view("singlepage",compact("product"));
     }
 
     public function create()
@@ -78,5 +80,8 @@ public function update(StoreProduct $request, $id)
 
         return redirect()->route('products.index')->with('success', 'Product deleted successfully');
     }
+
+   
+    
 }
 
