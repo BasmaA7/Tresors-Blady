@@ -44,7 +44,7 @@
 
                   <li><a class="hover:text-gray-200 cursor-pointer" href="">Store</a></li>
                   <li><a  href="" class="hover:text-gray-200 cursor-pointer">Favoris</a></li>
-                  <li><a class="hover:text-gray-200 cursor-pointer">Contact Us</a></li>
+                  <li><a href="{{route('ContactUs')}}"   class="hover:text-gray-200 cursor-pointer">Contact Us</a></li>
               </ul>
 
               <!-- Header Icons -->

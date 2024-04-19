@@ -1,7 +1,7 @@
 
 @extends('layout.layout')
 @section('content')
-<section class="text-gray-600 body-font ">
+{{-- <section class="text-gray-600 body-font ">
   <!-- source:https://codepen.io/owaiswiz/pen/jOPvEPB -->
 <div class="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
   <div class="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
@@ -56,6 +56,86 @@
   </div>
 </div>
   
-</section>
+</section> --}}
+
+
+
+<div class="h-full ">
+	<!-- Container -->
+	<div class="mx-auto">
+		<div class="flex justify-center px-6 py-12">
+			<!-- Row -->
+			<div class="w-3/4 xl:w-3/4 lg:w-2/12 flex">
+				<!-- Col -->
+				<img src="https://media-cdn.tripadvisor.com/media/photo-s/1c/0a/fd/a4/l-artisanat-marocaine.jpg" class="w-full h-auto bg-primary-400  hidden lg:block lg:w-5/12 bg-cover rounded-l-lg">
+				<!-- Col -->
+				<div class="w-full lg:w-7/12 bg-primary  p-5 rounded-lg lg:rounded-l-none">
+					<h3 class="py-4 text-4xl text-center text-gray-900 ">Create an Account!</h3>
+					<form action="{{ route('register') }}" method="POST" class="px-8 pt-6 pb-8 mb-4  bg-dark-200 rounded">
+                        @csrf
+                        @method('POST')
+						<div class="mb-4">
+                            <label class="block mb-2 text-sm font-bold text-gray-900 dark:text-white" for="Name">
+                                   Name
+                                </label>
+								<input
+                                class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-800 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                type="text"
+                                placeholder="Enter Your Name"
+                                name="name"
+                            />
+							</div>
+						
+						<div class="mb-4">
+							<label class="block mb-2 text-sm font-bold text-gray-900 dark:text-white" >
+                                Email
+                            </label>
+							<input
+                                class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-800 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                type="email"
+                                name="email"
+                            />
+						</div>
+						<div class="mb-4">
+                            <label class="block mb-2 text-sm font-bold text-gray-900 dark:text-white" for="password">
+                                    Password
+                                </label>
+								<input
+                                class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-800 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                    id="password"
+                                    type="password"
+                                    placeholder="******************"
+                                    name="password"
+                                />
+							</div>
+							
+						<div class="mb-6 text-center">
+							<button
+                          class="mt-5 tracking-wide font-semibold bg-customColor text-gray-100 w-full py-4 rounded-lg hover:bg-orange-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                          <svg class="w-6 h-6 -ml-2" fill="none" stroke="currentColor" stroke-width="2"
+                              stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                              <circle cx="8.5" cy="7" r="4" />
+                              <path d="M20 8v6M23 11h-6" />
+                          </svg>
+                          <span class="ml-3">
+                              Sign Up
+                          </span>
+                      </button>
+						</div>
+						<hr class="mb-6 border-t" />
+					
+						<div class="text-center">
+							<a class="inline-block text-sm text-gray-900 dark:text-blue-500 align-baseline hover:text-orange-300"
+								href="{{route('login')}}">
+								Already have an account? Login!
+							</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 @endsection
 

@@ -19,7 +19,6 @@ return new class extends Migration
          $table->foreign('product_id')->references('id')->on('products'); 
          $table->string('quantity');
          $table->timestamps();
-
         });
 
     }

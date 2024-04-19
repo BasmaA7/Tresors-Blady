@@ -48,3 +48,9 @@ Route::post('/cart/delete', [CartController::class, 'destroy'])->name('cart.dest
 Route::get('/success', [MollieController::class, 'succes'])->name('success');
 Route::get('/checkout', [MollieController::class, 'mollie'])->name('checkout');
 Route::post('/apply-coupon', [CartController::class, 'applyCoupon'])->name('apply_coupon');
+Route::get('/contact', function () {
+  return view('ContactUs');
+})->name('ContactUs');
+Route::get('/store', function () {
+  return view('Store');
+});
