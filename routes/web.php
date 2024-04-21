@@ -5,8 +5,10 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MollieController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
@@ -54,3 +56,7 @@ Route::get('/contact', function () {
 Route::get('/store', function () {
   return view('Store');
 });
+Route::get('/order', [OrderController::class, 'index'])->name('order.index');
+// Route::post('/cart/apply-coupon', [CouponController::class, 'applyCoupon'])->name('cart.applyCoupon');
+// Route::get('/coupons/create', [CouponController::class, 'create'])->name('coupons.create');
+// Route::post('/coupons', [CouponController::class, 'store'])->name('coupons.store');
