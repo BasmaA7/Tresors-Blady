@@ -35,14 +35,14 @@
                           class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 absolute top-full left-0">
                           <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
                               aria-labelledby="dropdownDefaultButton">
-                              {{-- @foreach ($categories as $category)
+                              @foreach ($categories as $category)
                               <p>{{ $category->title }}</p>
-                          @endforeach --}}
+                          @endforeach
                           </ul>
                       </div>
                   </li>
 
-                  <li><a class="hover:text-gray-200 cursor-pointer" href="">Store</a></li>
+                  <li><a class="hover:text-gray-200 cursor-pointer" href="{{route('store')}}">Store</a></li>
                   <li><a  href="" class="hover:text-gray-200 cursor-pointer">Favoris</a></li>
                   <li><a href="{{route('ContactUs')}}"   class="hover:text-gray-200 cursor-pointer">Contact Us</a></li>
               </ul>
@@ -95,7 +95,7 @@
                               d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                       </svg>
                   </a>
-                  <a class="flex items-center hover:text-gray-200 curspor-pointer" href="">
+                  <a class="flex items-center hover:text-gray-200 curspor-pointer" href="{{route('Cart.index')}}">
                       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                           stroke="currentColor">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

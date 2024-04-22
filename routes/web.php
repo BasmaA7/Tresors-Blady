@@ -12,6 +12,9 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Repositories\Categories\CategoryRepositoryInterface;
+use App\Http\Controllers\User\UserProductController;
+
 
 
 
@@ -31,6 +34,7 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::get('/login', [LoginController::class, 'showLogin'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('/logout', [LoginController::class, 'logout']); 
 
 Route::resource('products', ProductController::class);
 Route::resource('categories', CategorieController::class);
@@ -47,16 +51,18 @@ Route::get('/addproduct',[CartController::class,'addToCart'])->name('add.cart');
 Route::post('/addproduct', [CartController::class, 'store'])->name('add.cart');
 Route::get('/cart', [CartController::class, 'index'])->name('Cart.index');
 Route::post('/cart/delete', [CartController::class, 'destroy'])->name('cart.destroy');
-Route::get('/success', [MollieController::class, 'succes'])->name('success');
+Route::get('/success', [MollieController::class, 'success'])->name('success');
 Route::get('/checkout', [MollieController::class, 'mollie'])->name('checkout');
 Route::post('/apply-coupon', [CartController::class, 'applyCoupon'])->name('apply_coupon');
-Route::get('/contact', function () {
-  return view('ContactUs');
+Route::get('/contact', function (CategoryRepositoryInterface $categoryRepository) {
+  $categories = $categoryRepository->all();
+  return view('ContactUs', compact('categories'));
 })->name('ContactUs');
-Route::get('/store', function () {
-  return view('Store');
-});
+
 Route::get('/order', [OrderController::class, 'index'])->name('order.index');
+Route::get('/store', [UserProductController::class, 'store'])->name('store');
+Route::post('/search',[ UserProductController::class,'search'])->name('products.search');
+
 // Route::post('/cart/apply-coupon', [CouponController::class, 'applyCoupon'])->name('cart.applyCoupon');
 // Route::get('/coupons/create', [CouponController::class, 'create'])->name('coupons.create');
 // Route::post('/coupons', [CouponController::class, 'store'])->name('coupons.store');

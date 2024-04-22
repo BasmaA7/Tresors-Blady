@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Repositories\UserRepositoryInterface;
+use App\Repositories\Categories\CategoryRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -11,16 +12,22 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     protected $userRepository;
+    protected $categoryRepository; // Ajoutez cette ligne
 
-    public function __construct(UserRepositoryInterface $userRepository)
+
+    public function __construct(UserRepositoryInterface $userRepository,CategoryRepositoryInterface $categoryRepository)
     {
         $this->userRepository = $userRepository;
+        $this->categoryRepository = $categoryRepository; 
+
         $this->middleware('guest')->except('logout');
     }
 
     public function showLogin()
     {
-        return view('Auth.login');
+        $categories = $this->categoryRepository->all();
+
+        return view('Auth.login',compact('categories'));
     }
 
     public function login(Request $request)

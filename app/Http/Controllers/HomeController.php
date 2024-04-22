@@ -23,32 +23,22 @@ class HomeController extends Controller
     {
         $categories = $this->categoryRepository->all();
         $products = $this->productRepository->all(); 
-        $topProducts = $this->getMostPopularProducts(); // Utiliser la méthode pour obtenir les cinq produits les plus populaires
+        $topProducts = $this->getMostPopularProduct(); // Correction du nom de la méthode
     
         return view('home', compact('categories', 'products', 'topProducts'));
     }
 
-    // public function getMostPopularProduct()
-    // {
-    //     $topProduct = Product::leftJoin('order_product', 'products.id', '=', 'order_product.product_id')
-    //         ->select('products.*', DB::raw('COUNT(order_product.product_id) as nombre_commandes'))
-    //         ->groupBy('products.id')
-    //         ->orderByDesc('nombre_commandes')
-    //         ->first();
+    public function getMostPopularProduct()
+{
+    $topProducts = Product::leftJoin('order_product', 'products.id', '=', 'order_product.product_id')
+        ->select('products.*', DB::raw('COUNT(order_product.product_id) as nombre_commandes'))
+        ->groupBy('products.id')
+        ->orderByDesc('nombre_commandes')
+        ->limit(4)
+        ->get();
 
-    //     return $topProduct;
-    // }
+    return $topProducts;
+}
 
 
-    public function getMostPopularProducts()
-    {
-        $topProducts = Product::leftJoin('order_product', 'products.id', '=', 'order_product.product_id')
-            ->select('products.*', DB::raw('COUNT(order_product.product_id) as nombre_commandes'))
-            ->groupBy('products.id')
-            ->orderByDesc('nombre_commandes')
-            ->take(5) // Limiter à 5 produits
-            ->get(); // Utiliser get() pour obtenir une collection de produits
-    
-        return $topProducts;
-    }
 }

@@ -10,13 +10,16 @@
             </a>
         </div>
     @else
+        @php
+            $totalcart = 0; // Initialiser la variable $totalcart à zéro
+        @endphp
         <div>
             <div>
                 <div class="flex items-end lg:flex-row flex-col justify-end " id="cart">
                     <div div
                         class="w-full lg:px-8 lg:py-14 md:px-6 px-4 md:py-8 py-4 bg-white dark:bg-gray-800 overflow-y-auto overflow-x-hidden lg:h-screen h-auto"
                         id="scroll">
-                        <a href="{{route('home')}}">
+                        <a href="{{ route('home') }}">
                             <div class="flex items-center text-gray-500 hover:text-gray-600 dark:text-white cursor-pointer"
                                 onclick="checkoutHandler(false)">
                                 <img class="dark:hidden"
@@ -33,12 +36,12 @@
 
                         @foreach ($shopingcards as $cart)
                             <div class="md:flex items-strech py-8 md:py-10 lg:py-8 border-t border-gray-50 bg-bgColor">
-                                <div class="md: w-10 2xl:w-1/4 w-full flex justify-center">
+                                <div class="md:w-10 2xl:w-1/4 w-full flex justify-center">
 
                                     <img src="{{ asset('storage/' . $cart->product->image) }}" alt="product"
-                                        class=" object-center object-cover md:block hidden" style="width:150px;" />
+                                        class="object-center object-cover md:block hidden" style="width:150px;" />
                                     <img src="{{ asset('storage/' . $cart->product->image) }}" alt="product"
-                                        class="md:hidden  object-center object-cover mb-5" style="width:150px;" />
+                                        class="md:hidden object-center object-cover mb-5" style="width:150px;" />
                                 </div>
                                 <div class="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col justify-center">
                                     <div class="flex items-center justify-between w-full pt-1">
@@ -71,32 +74,21 @@
                                                 <input type="hidden" name="product_name"
                                                     value="{{ $cart->product->name }}">
 
-
                                                 <button type="submit"
                                                     class="text-white bg-green-600 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium  text-sm px-5 py-2.5 text-center me-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">check</button>
-
-
                                             </form>
                                         @endif
-
-
                                     </div>
                                     <div class="flex items-center justify-between pt-5">
                                         <div class="flex itemms-center">
-
-                                            <form class="flex gap-5" action="{{route('cart.destroy')}}" method="post">
+                                            <form class="flex gap-5" action="{{ route('cart.destroy') }}" method="post">
                                                 @csrf
                                                 <input type="hidden" name="product_id" value="{{ $cart->product_id }}">
-                                            
-                                                <p
-                                                    class="text-xs leading-3 underline text-gray-800 dark:text-white cursor-pointer">
-                                                    Add
-                                                    to favorites</p>
+                                                <p class="text-xs leading-3 underline text-gray-800 dark:text-white cursor-pointer">
+                                                    Add to favorites</p>
                                                 <button class="text-xs leading-3 underline text-red-500 pl-5 cursor-pointer"
                                                     type="submit">Remove</button>
-
                                             </form>
-
                                         </div>
                                         <p class="text-base font-black leading-none text-gray-800 dark:text-white">
                                             {{ $cart->product->price }}$</p>
@@ -104,11 +96,9 @@
                                 </div>
                             </div>
                         @endforeach
-                       
                     </div>
                     <div class="lg:w-96 md:w-8/12 w-full bg-gray-100 dark:bg-gray-900 h-full">
-                        <div
-                            class="flex flex-col lg:h-screen h-auto lg:px-8 md:px-7 px-4 lg:py-20 md:py-10 py-6 justify-between overflow-y-auto">
+                        <div class="flex flex-col lg:h-screen h-auto lg:px-8 md:px-7 px-4 lg:py-20 md:py-10 py-6 justify-between overflow-y-auto">
                             <div>
                                 <p class="lg:text-4xl text-3xl font-black leading-9 text-gray-800 dark:text-white">Summary
                                 </p>
@@ -120,52 +110,41 @@
                                             <p class="text-base leading-none text-gray-800 dark:text-white">
                                                 @php
                                                     $total = $cart->product->price * $cart->quantity;
+                                                    $totalcart += $total; // Ajouter le montant de chaque produit au total du panier
                                                 @endphp
                                                 {{ $total }}$
                                             </p>
                                         </div>
                                     @endif
                                 @endforeach
-
                             </div>
                             <div>
                                 <div class="flex items-center pb-6 justify-between lg:pt-5 pt-20">
                                     <p class="text-2xl leading-normal text-gray-800 dark:text-white">Total</p>
                                     <p class="text-2xl font-bold leading-normal text-right text-gray-800 dark:text-white">
-                                        @php
-
-                                            $totalcart = 0;
-
-                                            foreach ($shopingcards as $cart) {
-                                                if ($cart->product->quantity != 0) {
-                                                    $products[] = $cart;
-                                                    $totalcart = $totalcart + $cart->product->price * $cart->quantity;
-                                                }
-                                            }
-
-                                        @endphp
-                                        {{ $totalcart }}$
+                                        <!-- Afficher le montant total en fonction de l'authentification de l'utilisateur -->
+                                        @if (Auth::check() && session('totalAmount'))
+                                            {{ session('totalAmount') }}$
+                                        @else
+                                            {{ $totalcart }}$
+                                        @endif
                                     </p>
                                 </div>
-                                <form action="{{route('checkout')}}" method="get">
+                                <form action="{{ route('checkout') }}" method="get">
                                     @csrf
                                     <input type="hidden" name="quantity" value="{{ $count }}">
                                     <input type="hidden" name="total" value="{{ $totalcart }}">
                                     <button type="submit"
                                         class="text-base leading-none w-full py-5 bg-bgColor border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white dark:hover:bg-gray-700 ">Checkout</button>
                                 </form>
-
                             </div>
-                        
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     @endif
-   
-    
+
     @if (session('cartinfos'))
         <div id="toast-success"
             class="fixed bottom-0 left-0 w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800">

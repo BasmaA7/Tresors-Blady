@@ -67,7 +67,7 @@
 			<!-- Row -->
 			<div class="w-3/4 xl:w-3/4 lg:w-2/12 flex">
 				<!-- Col -->
-				<img src="https://media-cdn.tripadvisor.com/media/photo-s/1c/0a/fd/a4/l-artisanat-marocaine.jpg" class="w-full h-auto bg-primary-400  hidden lg:block lg:w-5/12 bg-cover rounded-l-lg">
+				<img src="{{ URL::asset('asset/images/souq.jpg') }}" class="w-full h-auto bg-primary-400  hidden lg:block lg:w-5/12 bg-cover rounded-l-lg">
 				<!-- Col -->
 				<div class="w-full lg:w-7/12 bg-primary  p-5 rounded-lg lg:rounded-l-none">
 					<h3 class="py-4 text-4xl text-center text-gray-900 ">Create an Account!</h3>

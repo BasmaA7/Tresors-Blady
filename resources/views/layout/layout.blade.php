@@ -14,7 +14,8 @@
 
     @include('includes.nav')
     @yield('content')
-    
+    @include('includes.footer')
+
     <script>
         tailwind.config = {
             theme: {
@@ -60,6 +61,29 @@
     
     
     </script>
+
+
+
+<script>
+    $('#search-form').submit(function(e) {
+    e.preventDefault();
+    var formData = $(this).serialize();
+
+    $.ajax({
+        type: 'POST',
+        url: '/search',
+        data: formData,
+        success: function(response) {
+            // Traitement des résultats de la recherche
+            console.log(response);
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+        }
+    });
+});
+
+</script>
 </body>
 
 </html>

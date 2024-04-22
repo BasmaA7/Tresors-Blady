@@ -26,5 +26,4 @@ class OrderController extends Controller
   
 
     
-    
 }

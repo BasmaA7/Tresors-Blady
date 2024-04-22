@@ -5,12 +5,12 @@
     <section
     class="ezy__contact10 light py-14 md:py-24 bg-white dark:bg-[#0b1727] text-zinc-900 dark:text-white overflow-hidden"
   >
-    <div class="container px-4">
+    <div class="container px-4 bg-orange-200 ">
       <div class="grid grid-cols-12 py-6">
         <div class="col-span-12 lg:col-span-6 lg:col-start-7 order-2 mb-4 lg:mb-0">
           <div
             class="bg-center bg-no-repeat bg-cover min-h[150px] w-[50vw] h-full"
-            style="background-image: url(https://cdn.easyfrontend.com/pictures/contact/contact_7.png)"
+            style="background-image: url(https://media.istockphoto.com/id/1146280994/fr/photo/beaucoup-de-tapis-color%C3%A9s-et-de-tapis-%C3%A0-vendre-dans-le-magasin-%C3%A0-la-rue-distanbul.jpg?s=612x612&w=0&k=20&c=2IXBq7ZbABduED2lbWiSaZwD6D8VW_5qBh7eVOeDMco=)"
           >
             <div class="flex flex-col justify-center h-full -ml-14">
               <div class="bg-gray-100 shadow dark:bg-gray-800 max-w-[350px] mt-6 flex items-center rounded-xl p-5">
@@ -28,7 +28,8 @@
             </div>
           </div>
         </div>
-        <div class="col-span-12 lg:col-span-5">
+        <div class="col-span-12 lg:col-span-5 ">
+        
           <div
             class="bg-white dark:bg-[#162231] rounded-2xl border-[25px] dark:border-[#1C293A] border-[#F4F7FD] border- p-6 md:p-12"
           >

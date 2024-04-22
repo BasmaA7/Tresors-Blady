@@ -39,11 +39,11 @@
 
 <div class="py-16">
   <div class="flex  rounded-lg shadow-lg overflow-hidden mx-auto max-w-sm lg:max-w-4xl">
-      <img src=" {{ URL::asset('assets/images/souq.jpg') }}" class="hidden lg:block w-7/12 bg-cover">
+      <img src=" {{ URL::asset('asset/images/loginpic.webp') }}" class="hidden lg:block w-7/12 bg-cover">
 
 
           <div class="w-full bg-dark-200 p-8 lg:w-1/2">
-              <h2 class="text-2xl font-semibold text-primary-200 text-center">CHRIH DABA</h2>
+              <h2 class="text-2xl font-semibold text-primary-200 text-center">TresorsBlady</h2>
               <p class="text-xl text-primary-300 text-center">Welcome back!</p>
               <a href="#"
                   class="flex items-center justify-center bg-primary-300 mt-4 text-white rounded-lg shadow-md hover:bg-primary-400">
@@ -90,11 +90,11 @@
               </div>
               <div class="mt-8">
                   <button type="submit"
-                      class="bg-primary-300 text-white font-bold py-2 px-4 w-full rounded hover:bg-orange-100">Login</button>
+                      class="bg-orange-800 text-white font-bold py-2 px-4 w-full rounded hover:bg-orange-600">Login</button>
               </div>
               <div class="mt-4 flex items-center justify-between">
                   <span class="border-b w-1/5 md:w-1/4"></span>
-                  <a href="#" class="text-xs text-primary-300 uppercase">or sign up</a>
+                  <a href="{{route('register')}}" class="text-xs text-primary-300 uppercase">or sign up</a>
                   <span class="border-b w-1/5  md:w-1/4"></span>
               </div>
           </form>

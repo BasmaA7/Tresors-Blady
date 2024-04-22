@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Payement extends Model
+class Payment extends Model
 {
     use HasFactory;
     
@@ -13,7 +13,7 @@ class Payement extends Model
         'payment_id', 'quantity', 'amount', 'currency', 'payment_status', 'payment_method', 'user_id', 'order_id'
     ];
 
-    public function User(){
+    public function user(){
         return $this->belongsTo(User::class);
     }
 }

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('payements', function (Blueprint $table) {
+        Schema::table('payments', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
     }
@@ -23,7 +23,7 @@ return new class extends Migration
     {
         
             //
-            Schema::dropIfExists('payements');
+            Schema::dropIfExists('payments');
 
         
     }

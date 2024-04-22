@@ -33,7 +33,6 @@ class RegisterController extends Controller
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
         ];
-        $categories = $this->categoryRepository->all();
 
         $user = $this->userRepository->create($userData);
         return redirect('/home')->with('success', 'Registration successful! Welcome to our site.');
@@ -41,6 +40,7 @@ class RegisterController extends Controller
     }
     public function showRegistrationForm()
     {
-        return view('Auth.register');
+        $categories = $this->categoryRepository->all();
+        return view('Auth.register', compact('categories'));
     }
 }
