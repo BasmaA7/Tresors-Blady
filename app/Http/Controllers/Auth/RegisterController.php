@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 
+use App\Models\Role;
 use App\Repositories\UserRepositoryInterface;
 use App\Repositories\Categories\CategoryRepositoryInterface;
 
@@ -27,14 +28,20 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-
+        
         $userData = [
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
         ];
-
+      
         $user = $this->userRepository->create($userData);
+
+        // $adminRole = Role::where('name', 'admin')->first();
+        // $user->roles()->attach($adminRole);
+        $clientRole = Role::where('name', 'client')->first();
+        $user->roles()->attach($clientRole);
+
         return redirect('/home')->with('success', 'Registration successful! Welcome to our site.');
 
     }
