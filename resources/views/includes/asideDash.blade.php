@@ -15,7 +15,7 @@
             </div>
         </div>
 
-        <nav class="mt-10">
+        <nav class="mt-10  bg-customColor">
             <a class="flex items-center px-6 py-2 mt-4 text-gray-100 bg-gray-700 bg-opacity-25" href="#">
                 <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
@@ -217,7 +217,7 @@
                 </div>
             </div>
         </header>
-        <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
+        <main class="flex-1 overflow-x-hidden overflow-y-auto  bg-customColor">
             <div class="container px-6 py-8 mx-auto">
                 <h3 class="text-3xl font-medium text-gray-700">Dashboard</h3>
 
@@ -250,7 +250,7 @@
                                 </div>
 
                                 <div class="mx-5">
-                                    <h4 class="text-2xl font-semibold text-gray-700">8,282</h4>
+                                    {{-- <h4 class="text-2xl font-semibold text-gray-700">{{ $newUsersCount }}</h4> --}}
                                     <div class="text-gray-500">New Users</div>
                                 </div>
                             </div>
@@ -274,7 +274,7 @@
                                 </div>
 
                                 <div class="mx-5">
-                                    <h4 class="text-2xl font-semibold text-gray-700">200,521</h4>
+                                    {{-- <h4 class="text-2xl font-semibold text-gray-700">{{ $totalOrdersCount }}</h4> --}}
                                     <div class="text-gray-500">Total Orders</div>
                                 </div>
                             </div>
@@ -294,7 +294,7 @@
                                 </div>
 
                                 <div class="mx-5">
-                                    <h4 class="text-2xl font-semibold text-gray-700">215,542</h4>
+                                    {{-- <h4 class="text-2xl font-semibold text-gray-700">{{ $totalProductsCount }}</h4> --}}
                                     <div class="text-gray-500">Available Products</div>
                                 </div>
                             </div>

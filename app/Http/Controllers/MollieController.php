@@ -68,9 +68,18 @@ class MollieController extends Controller
             $amount = $user->products->sum('price');
             $order = Order::create(["user_id" => $user->id, "total_amount" => $amount, "status" => 1]);
             $order->products()->attach($product_ids);
+    
+            // Décrémenter la quantité de produits disponibles
+            foreach ($user->products as $product) {
+                $product->quantity -= 1;
+                $product->save();
+            }
+    
+            // Supprimer les produits de l'utilisateur après la commande
             $user->products()->sync([]);
+    
             $discount = Discount::where('user_id', $user->id)->exists();
-
+    
             $paymentObj = new Payment(); 
             $paymentObj->payment_id = $paymentId;
             $paymentObj->quantity = $quantity;
@@ -80,7 +89,7 @@ class MollieController extends Controller
             $paymentObj->payment_method = "Mollie";
             $paymentObj->user_id = Auth::id();
             $paymentObj->order_id = $order->id;
-            
+    
             if (!$discount) {
                 $discountObj = new Discount();
                 $discountObj->user_id = Auth::id();
@@ -88,15 +97,15 @@ class MollieController extends Controller
                 $discountObj->discount = 15;
                 $discountObj->save();
             }
-            
+    
             $paymentObj->save();
-                    
     
             return redirect()->route('order.index');
         } else {
             return redirect()->route('home');
         }
     }
+    
 
     public function cancel()
     {

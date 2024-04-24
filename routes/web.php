@@ -63,6 +63,10 @@ Route::get('/about', function (CategoryRepositoryInterface $categoryRepository) 
   $categories = $categoryRepository->all();
   return view('About', compact('categories'));
 })->name('About');
+Route::get('/profile', function (CategoryRepositoryInterface $categoryRepository) {
+  $categories = $categoryRepository->all();
+  return view('profile', compact('categories'));
+})->name('profile');
 
 Route::get('/order', [OrderController::class, 'index'])->name('order.index');
 Route::get('/store', [UserProductController::class, 'store'])->name('store');
@@ -71,6 +75,9 @@ Route::get('favoris', [FavorisController::class, 'index'])->name('Shop.favoris')
 Route::post('favoris/{id}/add', [FavorisController::class, 'add'])->name('favoris.add');
 Route::get('favoris/{id}/delete', [FavorisController::class, 'delete'])->name('favoris.delete');
 Route::get('/search', [HomeController::class, 'showProducts'])->name('showProducts');
+Route::get('/stats/products', 'StatistiqueController@getProductStats');
+Route::get('/stats/orders', 'StatistiqueController@getOrderStats');
+Route::get('/stats/users', 'StatistiqueController@getUsers');
 
 
 // Route::get('/products/filter', [HomeController::class, 'index'])->name('products.filter.index');

@@ -11,12 +11,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;500;700;900&family=Oswald:wght@200..700&family=Platypi:ital,wght@0,300..800;1,300..800&family=Playfair+Display:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        body {
+    {{-- <style>
+      body {
             background-color: #faf5e8;
         }
-    </style>
-</head>
+    </style>  --}}
 
 <body >
 
@@ -34,6 +33,7 @@
                         bgColor:'#D3BD9C',
                         primary: '#fbf2c0',
                         bgButton:'#9dad63',
+                        SectionBg: '#faf5e8',
 
 
                   

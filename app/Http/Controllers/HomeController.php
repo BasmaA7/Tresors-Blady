@@ -49,7 +49,7 @@ class HomeController extends Controller
         ->select('products.*', DB::raw('COUNT(order_product.product_id) as nombre_commandes'))
         ->groupBy('products.id')
         ->orderByDesc('nombre_commandes')
-        ->limit(4)
+        ->limit(3)
         ->get();
 
     return $topProducts;
