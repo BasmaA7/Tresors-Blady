@@ -70,8 +70,13 @@ Route::post('/search',[ UserProductController::class,'search'])->name('products.
 Route::get('favoris', [FavorisController::class, 'index'])->name('Shop.favoris');
 Route::post('favoris/{id}/add', [FavorisController::class, 'add'])->name('favoris.add');
 Route::get('favoris/{id}/delete', [FavorisController::class, 'delete'])->name('favoris.delete');
+Route::get('/search', [HomeController::class, 'showProducts'])->name('showProducts');
 
 
-// Route::post('/cart/apply-coupon', [CouponController::class, 'applyCoupon'])->name('cart.applyCoupon');
-// Route::get('/coupons/create', [CouponController::class, 'create'])->name('coupons.create');
-// Route::post('/coupons', [CouponController::class, 'store'])->name('coupons.store');
+// Route::get('/products/filter', [HomeController::class, 'index'])->name('products.filter.index');
+// Route::post('/search', [HomeController::class, 'showProducts'])->name('dashboard.products.search');
+// Route::post('/search/products', [HomeController::class, 'showSearch'])->name('dashboard.products.search');
+// Route::get('/products/all', [HomeController::class, 'products'])->name('products.all');
+
+
+// Route::post('/searchBycategorie', [HomeController::class, 'filterByCategorie'])->name('searchBycategorie');

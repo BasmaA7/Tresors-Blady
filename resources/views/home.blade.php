@@ -16,11 +16,11 @@
 
   <!--******** END hero section********* -->
   <!--******** Search********* -->
-  <div class="  flex justify-center items-center">
-    <form action="/search" class="max-w-[680px] w-full px-4 pt-20">
-        <div class="relative">
+  <div class="flex justify-center items-center">
+    <form action="/search" class="max-w-[680px] w-full px-4 pt-20 flex-grow">
+        <div class="relative flex-grow">
             <input type="text" name="q" class="w-full border h-12 shadow p-4 rounded-full dark:text-gray-800 dark:border-gray-700 dark:bg-gray-200" placeholder="search">
-            <button class="bgButton"    type="submit">
+            <button class="bgButton" type="submit">
                 <svg class="text-teal-400 h-5 w-5 absolute top-3.5 right-3 fill-current dark:text-teal-300"
                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
                     x="0px" y="0px" viewBox="0 0 56.966 56.966"
@@ -32,10 +32,92 @@
             </button>
         </div>
     </form>
+    <div class="ml-4">
+        <div class="hs-dropdown relative inline-flex">
+            <button id="hs-dropdown-basic" type="button"
+                class="hs-dropdown-toggle py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-bgButton text-gray-900 shadow-sm hover:bg-gray-8000 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 mt-16">
+                Filter 
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                    <path fill="#ffffff"
+                        d="M3.9 54.9C10.5 40.9 24.5 32 40 32H472c15.5 0 29.5 8.9 36.1 22.9s4.6 30.5-5.2 42.5L320 320.9V448c0 12.1-6.8 23.2-17.7 28.6s-23.8 4.3-33.5-3l-64-48c-8.1-6-12.8-15.5-12.8-25.6V320.9L9 97.3C-.7 85.4-2.8 68.8 3.9 54.9z" />
+                </svg>
+                <svg class="hs-dropdown-open:rotate-180 size-4 text-gray-600"
+                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m6 9 6 6 6-6" />
+                </svg>
+            </button>
+
+            <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 w-56 hidden z-10 mt-2 min-w-60 shadow-md rounded-lg p-2 bg-gray-800 dark:border border-gray-700 divide-gray-700"
+                aria-labelledby="hs-dropdown-basic">
+                <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-300 hover:bg-gray-800 focus:outline-none  hover:text-gray-300 focus:bg-gray-700"
+                    href="{{ route('home') }}">
+                    All
+                </a>
+                @foreach ($categories as $category)
+                              <p>{{ $category->title }}</p>
+                          @endforeach
+            </div>
+        </div>
+    </div>
 </div>
+
 
   <!--******** Search********* -->
 
+         {{-- ------------------------------- --}}
+                        {{-- end Search --}}
+                        {{-- filter --}}
+          <div class="container mx-auto flex justify-center items-center flex-wrap pt-4 pb-12" id="place_result">
+              @foreach ($products as $product)
+                  <div class="w-[28rem] h-[25rem] p-6 flex flex-col" data-aos="zoom-out">
+                      <a class="w-full h-full" href="{{ url('products/' . $product->id . '/detail') }}">
+                          <img class="hover:grow hover:shadow-lg w-full h-[20rem]" src="{{ asset($product->image) }}">
+                      </a>
+                      <div class="pt-3 flex items-center justify-between">
+                          <p class="">{{ $product->title }}</p>
+                          <div class="flex">
+                              <a href="" class="px-4">
+                                  <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="18px"
+                                      height="18px" viewBox="0 0 24 24" fill="none">
+                                      <path
+                                          d="M21 5L19 12H7.37671M20 16H8L6 3H3M16 5.5H13.5M13.5 5.5H11M13.5 5.5V8M13.5 5.5V3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z"
+                                          stroke="#000000" stroke-width="2" stroke-linecap="round"
+                                          stroke-linejoin="round" />
+                                  </svg>
+                              </a>
+                              <a href="{{ route('favoris.add', $product->id) }}">
+                                  <svg class="h-6 w-6 fill-current text-gray-500 hover:text-black"
+                                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                      <path
+                                          d="M12,4.595c-1.104-1.006-2.512-1.558-3.996-1.558c-1.578,0-3.072,0.623-4.213,1.758c-2.353,2.363-2.352,6.059,0.002,8.412 l7.332,7.332c0.17,0.299,0.498,0.492,0.875,0.492c0.322,0,0.609-0.163,0.792-0.409l7.415-7.415 c2.354-2.354,2.354-6.049-0.002-8.416c-1.137-1.131-2.631-1.754-4.209-1.754C14.513,3.037,13.104,3.589,12,4.595z M18.791,6.205 c1.563,1.571,1.564,4.025,0.002,5.588L12,18.586l-6.793-6.793C3.645,10.23,3.646,7.776,5.205,6.209 c0.76-0.756,1.754-1.172,2.799-1.172s2.035,0.416,2.789,1.17l0.5,0.5c0.391,0.391,1.023,0.391,1.414,0l0.5-0.5 C14.719,4.698,17.281,4.702,18.791,6.205z" />
+                                  </svg>
+                              </a>
+
+
+                          </div>
+                      </div>
+                      <p class="pt-1 text-gray-900">{{ $product->price }} MAD</p>
+                  </div>
+              @endforeach
+          </div>
+      </div>
+  </section>
+
+  
+  
+ 
+  
+
+
+
+
+
+
+
+  
   <!--Categorie section -->
   <section class="ezy__epcategory3 light py-14 md:py-24 bg-white dark:bg-[#0b1727] text-zinc-900 dark:text-white relative overflow-hidden z-10">
     <div class="container px-4 mx-auto ">
@@ -238,6 +320,30 @@
   </div>
 </section>
 <!-- ******* Description sur site *********-->
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      // Récupérer le bouton du dropdown
+      var dropdownButton = document.getElementById('hs-dropdown-basic');
+
+      // Récupérer le menu déroulant
+      var dropdownMenu = document.querySelector('.hs-dropdown-menu');
+
+      // Ajouter un écouteur d'événements au clic sur le bouton
+      dropdownButton.addEventListener('click', function() {
+          // Basculer la visibilité du menu déroulant
+          dropdownMenu.classList.toggle('hidden');
+      });
+
+      // Ajouter un écouteur d'événements pour masquer le menu déroulant lorsque vous cliquez en dehors de celui-ci
+      document.addEventListener('click', function(event) {
+          var isClickInside = dropdownButton.contains(event.target) || dropdownMenu.contains(event.target);
+          if (!isClickInside) {
+              dropdownMenu.classList.add('hidden');
+          }
+      });
+  });
+</script>
 
 
   

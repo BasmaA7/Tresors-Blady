@@ -93,6 +93,31 @@
 });
 
 </script>
+
+
+
+<script>
+    $(document).ready(function() {
+    $('form').submit(function(event) {
+        event.preventDefault(); 
+        var formData = $(this).serialize(); 
+
+        $.ajax({
+            type: 'GET', 
+            url: '/search', 
+            data: formData, 
+            success: function(response) {
+                console.log(response);
+                $('#place_result').html(response); 
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+});
+
+</script>
 </body>
 
 </html>

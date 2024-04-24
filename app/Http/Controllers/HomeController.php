@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -54,5 +55,18 @@ class HomeController extends Controller
     return $topProducts;
 }
 
+public function showProducts(Request $request)
+{
+    $products = Product::all();
+    $categories = Category::all();
 
+    if (!empty($request->keyword)) {
+        $products = Product::where("name", "like", "%" . $request->keyword . "%")->get();
+        return view('Search', compact('products'));
+
+    } else {
+        $products = Product::all();
+        return view('Search', compact('products','categories'));
+    }
+}
 }
