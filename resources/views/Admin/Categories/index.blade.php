@@ -33,7 +33,10 @@
   </div>
 
   <div class="px-3 py-4 flex justify-center">
-    <x-alert />
+    <div>
+      <x-alert />
+
+    </div>
       <table class="w-full text-md bg-white shadow-md rounded mb-4">
           <tbody>
               <tr class="border-b">

@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CouponController;
+use App\Http\Controllers\FavorisController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MollieController;
 use App\Http\Controllers\OrderController;
@@ -58,10 +59,18 @@ Route::get('/contact', function (CategoryRepositoryInterface $categoryRepository
   $categories = $categoryRepository->all();
   return view('ContactUs', compact('categories'));
 })->name('ContactUs');
+Route::get('/about', function (CategoryRepositoryInterface $categoryRepository) {
+  $categories = $categoryRepository->all();
+  return view('About', compact('categories'));
+})->name('About');
 
 Route::get('/order', [OrderController::class, 'index'])->name('order.index');
 Route::get('/store', [UserProductController::class, 'store'])->name('store');
 Route::post('/search',[ UserProductController::class,'search'])->name('products.search');
+Route::get('favoris', [FavorisController::class, 'index'])->name('Shop.favoris');
+Route::post('favoris/{id}/add', [FavorisController::class, 'add'])->name('favoris.add');
+Route::get('favoris/{id}/delete', [FavorisController::class, 'delete'])->name('favoris.delete');
+
 
 // Route::post('/cart/apply-coupon', [CouponController::class, 'applyCoupon'])->name('cart.applyCoupon');
 // Route::get('/coupons/create', [CouponController::class, 'create'])->name('coupons.create');

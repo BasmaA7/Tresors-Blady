@@ -23,10 +23,24 @@ class HomeController extends Controller
     {
         $categories = $this->categoryRepository->all();
         $products = $this->productRepository->all(); 
-        $topProducts = $this->getMostPopularProduct(); // Correction du nom de la méthode
+        $bestProduct = $this->bestProduct();
+        $topProducts = $this->getMostPopularProduct(); 
     
-        return view('home', compact('categories', 'products', 'topProducts'));
+        return view('home', compact('categories', 'products', 'topProducts','bestProduct'));
     }
+
+
+    public function bestProduct()
+{
+    $bestProduct = Product::leftJoin('order_product', 'products.id', '=', 'order_product.product_id')
+        ->select('products.*', DB::raw('COUNT(order_product.product_id) as nombre_commandes'))
+        ->groupBy('products.id')
+        ->orderByDesc('nombre_commandes')
+        ->limit(1) 
+        ->first(); 
+
+    return $bestProduct;
+}
 
     public function getMostPopularProduct()
 {

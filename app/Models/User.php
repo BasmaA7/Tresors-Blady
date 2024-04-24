@@ -43,10 +43,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-
+    // Cart
     public function shopingcards(){
         return $this->hasMany(Cart::class);
     }
+  // Product
     public function products(){
         return $this->belongsToMany(Product::class,"carts");
     }
@@ -64,4 +65,8 @@ class User extends Authenticatable
     {
         return $this->orders()->latest()->first();
     }
-}
+
+    public function favItems()
+    {
+        return $this->hasMany(Favoris::class);
+    }}

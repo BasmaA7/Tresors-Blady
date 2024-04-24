@@ -35,7 +35,7 @@ class LoginController extends Controller
         $credentials = $request->only('email','password');
 
         if (auth()->attempt($credentials)) {
-            return redirect()->intended('/');
+            return redirect()->intended('/home');
         }
 
         return back()->withErrors(['email' => 'Invalid credentials']);
