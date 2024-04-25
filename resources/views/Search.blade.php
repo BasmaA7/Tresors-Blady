@@ -28,48 +28,36 @@
 
 
 
-        <script>
+   <script>
           
-          function recherche() {
-    const search = document.getElementById('search').value;
-    const filter = document.getElementById('filter').value;
+     $(document).ready(function() {
+    $('#search').on('input', function() {
+        recherche();
+    });
 
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', '/filter?search=' + search + '&category=' + filter, true);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-                console.log(xhr.responseText);
-                document.getElementById('place_result').innerHTML = xhr.responseText;
-            } else {
-                console.error('Error:', xhr.statusText);
-            }
+    $('#filter').on('change', function() {
+        recherche();
+    });
+});
+
+function recherche() {
+    const search = $('#search').val();
+    const filter = $('#filter').val();
+
+    $.ajax({
+        url: '/filter',
+        method: 'GET',
+        data: { search: search, category: filter },
+        success: function(response) {
+            $('#place_result').html(response);
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
         }
-    };
-    xhr.send();
+    });
 }
 
-
-
-            //   $(document).ready(function() {
-            //   $('form').submit(function(event) {
-            //       event.preventDefault(); 
-            //       var formData = $(this).serialize(); 
-
-            //       $.ajax({
-            //           type: 'GET', 
-            //           url: '/search', 
-            //           data: formData, 
-            //           success: function(response) {
-            //               console.log(response);
-            //               $('#place_result').html(response); 
-            //           },
-            //           error: function(xhr, status, error) {
-            //               console.error(error);
-            //           }
-            //       });
-            //   });
-            // });
+           
         </script>
     </div>
     <div class="container mx-auto flex items-center flex-wrap pt-4 pb-12" id="place_result">

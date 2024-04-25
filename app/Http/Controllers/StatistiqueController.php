@@ -4,40 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class StatistiqueController extends Controller
 {
-    public function getUsers()
+    public function index()
     {
-        $orderStats = $this->getOrderStats(); 
-        $productStats = $this->getProductStats();
+        $totalOrdersCount = Order::count();
+        $totalProductsCount = Product::count();
+        $totalUsersCount = User::count(); 
 
-        // Passer toutes les données à la vue categories
-        return view('aside', compact('orderStats', 'productStats'));      
-    }
 
-    public function getOrderStats()
-    {
-        // Récupérer le nombre de commandes en attente
-        $pendingOrdersCount = Order::where('status', 1)->count();
-
-        // Retourner le nombre de commandes en attente
-        return $pendingOrdersCount;
-    }
-
-    public function getProductStats()
-    {
-        // Récupérer les 5 meilleurs produits vendus et le stock total
-        $bestSellingProducts = Product::select('id', 'name')
-            ->withCount('orders')
-            ->orderByDesc('orders_count')
-            ->limit(5)
-            ->get();
-
-        $totalStock = Product::sum('stock');
-
-        // Retourner les meilleurs produits vendus et le stock total
-        return compact('bestSellingProducts', 'totalStock');
+        return view('Statistique', compact('totalOrdersCount', 'totalProductsCount','totalUsersCount'));
     }
 }

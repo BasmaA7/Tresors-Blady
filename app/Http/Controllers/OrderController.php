@@ -17,13 +17,12 @@ class OrderController extends Controller
    
   public function index()
   {
-      // Récupérer les commandes de l'utilisateur connecté
       $user = Auth::user();
       $categories = Category::all();
       $orders = Order::where('user_id', $user->id)->get();
-      
-      // Retourner la vue avec les commandes
-      return view('orders.index', compact('orders','categories'));
+      $totalOrdersCount = $orders->count();
+
+      return view('orders.index', compact('orders','categories','totalOrdersCount'));
   }
   
 

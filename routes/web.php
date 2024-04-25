@@ -11,6 +11,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MollieController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StatistiqueController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Repositories\Categories\CategoryRepositoryInterface;
@@ -76,15 +77,9 @@ Route::get('favoris/{id}/add', [FavorisController::class, 'add'])->name('favoris
 Route::get('favoris/{id}/delete', [FavorisController::class, 'delete'])->name('favoris.delete');
 Route::get('/search', [HomeController::class, 'showProducts'])->name('showProducts');
 Route::get('/filter', [HomeController::class, 'filter'])->name('filter');
-Route::get('/stats/products', 'StatistiqueController@getProductStats');
-Route::get('/stats/orders', 'StatistiqueController@getOrderStats');
-Route::get('/stats/users', 'StatistiqueController@getUsers');
+Route::get('/statistiques', [StatistiqueController::class, 'index'])->name('Statistique');
 
 
-// Route::get('/products/filter', [HomeController::class, 'index'])->name('products.filter.index');
-// Route::post('/search', [HomeController::class, 'showProducts'])->name('dashboard.products.search');
-// Route::post('/search/products', [HomeController::class, 'showSearch'])->name('dashboard.products.search');
-// Route::get('/products/all', [HomeController::class, 'products'])->name('products.all');
 
 
-// Route::post('/searchBycategorie', [HomeController::class, 'filterByCategorie'])->name('searchBycategorie');
+

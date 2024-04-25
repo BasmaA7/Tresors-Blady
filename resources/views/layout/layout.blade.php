@@ -23,6 +23,7 @@
     @include('includes.nav')
     @yield('content')
     @include('includes.footer')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
         tailwind.config = {

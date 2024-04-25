@@ -20,13 +20,15 @@ class ProductController extends Controller
     {
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository; 
+
     }
 
     public function index()
     {
         $categories = $this->categoryRepository->all();
         $products = $this->productRepository->all(); 
-        return view('admin.products.index', compact('products','categories'));
+        $totalProductsCount = count($products); 
+        return view('Admin.Products.index', compact('products','categories','totalProductsCount'));
     }
 
     public function show($id)
