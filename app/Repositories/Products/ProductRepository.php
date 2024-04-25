@@ -31,6 +31,9 @@ class ProductRepository implements ProductRepositoryInterface
         $product = $this->find($id);
         $product->delete();
     }
-  
+    public function paginate($perPage)
+    {
+        return Product::paginate($perPage);
+    }
 
 }

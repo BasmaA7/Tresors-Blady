@@ -20,7 +20,7 @@ class CategorieController extends Controller
 
     public function index()
     {
-        $categories = $this->categoryRepository->all();
+        $categories = $this->categoryRepository->paginate(5); 
         return view('Admin.Categories.index', compact('categories'));
     }
 

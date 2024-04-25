@@ -5,17 +5,18 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategorieController;
-use App\Http\Controllers\CouponController;
 use App\Http\Controllers\FavorisController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MollieController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StatistiqueController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Repositories\Categories\CategoryRepositoryInterface;
 use App\Http\Controllers\User\UserProductController;
+
 
 
 
@@ -79,6 +80,7 @@ Route::get('/search', [HomeController::class, 'showProducts'])->name('showProduc
 Route::get('/filter', [HomeController::class, 'filter'])->name('filter');
 Route::get('/statistiques', [StatistiqueController::class, 'index'])->name('Statistique');
 
+Route::resource('users', UserController::class);
 
 
 

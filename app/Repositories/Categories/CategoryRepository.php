@@ -30,4 +30,8 @@ class CategoryRepository implements CategoryRepositoryInterface
         $category = $this->find($id);
         $category->delete();
     }
+    public function paginate($perPage)
+    {
+        return Category::paginate($perPage);
+    }
 }

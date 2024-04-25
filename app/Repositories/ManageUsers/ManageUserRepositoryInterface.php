@@ -1,12 +1,17 @@
 <?php
 
-namespace App\Repositories\Products;
+namespace App\Repositories\ManageUsers;
 
-interface ProductRepositoryInterface
+use App\Models\User;
+
+interface ManageUserRepositoryInterface
 {
     public function all();
+
     public function find($id);
+
     public function create(array $data);
+
     public function update($id, array $data);
 
     public function delete($id);

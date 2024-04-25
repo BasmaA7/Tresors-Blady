@@ -26,9 +26,8 @@ class ProductController extends Controller
     public function index()
     {
         $categories = $this->categoryRepository->all();
-        $products = $this->productRepository->all(); 
-        $totalProductsCount = count($products); 
-        return view('Admin.Products.index', compact('products','categories','totalProductsCount'));
+        $products = $this->productRepository->paginate(5);
+        return view('Admin.Products.index', compact('products','categories'));
     }
 
     public function show($id)
@@ -36,7 +35,6 @@ class ProductController extends Controller
         $product = $this->productRepository->find($id);
         $categories = $this->categoryRepository->all();
         return view('admin.products.SinglePage', compact('product', 'categories'));
-        // return view("singlepage",compact("product"));
     }
 
     public function create()

@@ -9,6 +9,8 @@ use App\Repositories\Products\ProductRepositoryInterface;
 use App\Repositories\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\UserRepository;
+use App\Repositories\ManageUsers\ManageUserRepositoryInterface;
+use App\Repositories\ManageUsers\ManageUserRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +26,8 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\Categories\CategoryRepository::class
         );
       $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
+      $this->app->bind(ManageUserRepositoryInterface::class, ManageUserRepository::class);
+
 
 
     }

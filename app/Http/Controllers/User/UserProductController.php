@@ -6,12 +6,25 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Repositories\Products\ProductRepositoryInterface; 
+
+
 
 class UserProductController extends Controller
 {
-    public function store(){
+
+
+    protected $productRepository;
+
+    public function __construct(ProductRepositoryInterface $productRepository)
+    {
+        $this->productRepository = $productRepository;
+    }
+
+    public function store()
+    {
         $categories = Category::all();
-        $products = Product::all();
+        $products = $this->productRepository->paginate(10); // Paginate with 10 products per page
 
         return view('store', compact('categories', 'products'));
     }
