@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Repositories\Categories\CategoryRepositoryInterface;
@@ -26,8 +27,9 @@ class HomeController extends Controller
         $products = $this->productRepository->all();
         $bestProduct = $this->bestProduct();
         $topProducts = $this->getMostPopularProduct();
+        $user = Auth::user(); 
 
-        return view('home', compact('categories', 'products', 'topProducts', 'bestProduct'));
+        return view('home', compact('categories', 'products', 'topProducts', 'bestProduct','user'));
     }
 
 

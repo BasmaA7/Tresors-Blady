@@ -11,6 +11,7 @@ use App\Http\Controllers\MollieController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StatistiqueController;
+use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
@@ -65,10 +66,7 @@ Route::get('/about', function (CategoryRepositoryInterface $categoryRepository) 
   $categories = $categoryRepository->all();
   return view('About', compact('categories'));
 })->name('About');
-Route::get('/profile', function (CategoryRepositoryInterface $categoryRepository) {
-  $categories = $categoryRepository->all();
-  return view('profile', compact('categories'));
-})->name('profile');
+
 
 Route::get('/order', [OrderController::class, 'index'])->name('order.index');
 Route::get('/store', [UserProductController::class, 'store'])->name('store');
@@ -82,6 +80,6 @@ Route::get('/statistiques', [StatistiqueController::class, 'index'])->name('Stat
 
 Route::resource('users', UserController::class);
 
-
+Route::get('profile', [ProfileController::class, 'show'])->name('Profile.show');
 
 

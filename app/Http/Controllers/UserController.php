@@ -5,6 +5,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Order;
+use App\Models\User;
 use App\Repositories\ManageUsers\ManageUserRepositoryInterface;
 use Illuminate\Http\Request;
 
@@ -53,5 +55,9 @@ class UserController extends Controller
         $this->manageUserRepository->delete($id);
         return redirect()->route('users.index')->with('success', 'User deleted successfully.');
     }
+
+
+  
+    
 }
 
