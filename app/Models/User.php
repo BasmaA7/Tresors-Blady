@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -42,4 +41,39 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    // Cart
+    public function shopingcards(){
+        return $this->hasMany(Cart::class);
+    }
+  // Product
+    public function products(){
+        return $this->belongsToMany(Product::class,"carts");
+    }
+
+    public function payements(){
+        return $this->hasMany(Payment::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function latestOrder()
+    {
+        return $this->orders()->latest()->first();
+    }
+
+    public function favItems()
+    {
+        return $this->hasMany(Favoris::class);
+    }
+
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
 }

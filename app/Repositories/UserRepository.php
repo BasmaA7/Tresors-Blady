@@ -16,7 +16,7 @@ class UserRepository implements UserRepositoryInterface
         $user = User::find($userId);
 
         if (!$user) {
-            return false; // L'utilisateur n'a pas été trouvé
+            return false; 
         }
 
         $user->update($data);
@@ -27,7 +27,10 @@ class UserRepository implements UserRepositoryInterface
     {
         return User::find($userId);
     }
-
-    // Add other methods if necessary
-}
+    public function findByEmail($email)
+    {
+        return User::where('email', $email)->first();
+    }
+   
+  }
 
