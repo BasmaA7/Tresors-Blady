@@ -58,7 +58,7 @@
                                         @if ($cart->product->quantity == 0)
                                             <h2>Out of stock </h2>
                                         @else
-                                            <form class="flex items-center gap-3" action="}"
+                                            <form class="flex items-center gap-3" action="{{ route('cart.check') }}"
                                                 method="post">
                                                 @csrf
 
@@ -91,7 +91,7 @@
                                             </form>
                                         </div>
                                         <p class="text-base font-black leading-none text-gray-800 dark:text-white">
-                                            {{ $cart->product->price }}$</p>
+                                            {{ $cart->product->price* $cart->quantity }} MAD</p>
                                     </div>
                                 </div>
                             </div>
@@ -110,9 +110,9 @@
                                             <p class="text-base leading-none text-gray-800 dark:text-white">
                                                 @php
                                                     $total = $cart->product->price * $cart->quantity;
-                                                    $totalcart += $total; // Ajouter le montant de chaque produit au total du panier
+                                                    $totalcart += $total; 
                                                 @endphp
-                                                {{ $total }}$
+                                                {{ $total }} MAD
                                             </p>
                                         </div>
                                     @endif
@@ -126,7 +126,7 @@
                                         @if (Auth::check() && session('totalAmount'))
                                             {{ session('totalAmount') }}$
                                         @else
-                                            {{ $totalcart }}$
+                                            {{ $totalcart }} MAD
                                         @endif
                                     </p>
                                 </div>

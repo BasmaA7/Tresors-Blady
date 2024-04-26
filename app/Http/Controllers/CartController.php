@@ -8,6 +8,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
@@ -35,16 +36,15 @@ class CartController extends Controller
             $productCheck = Cart::where('user_id', $user_id)->where('product_id', $product_id)->first();
     
             if ($productCheck) {
-                $cartInfo = "Product Already Added";
+                // Si le produit est déjà dans le panier, augmentez simplement la quantité
+                $productCheck->increment('quantity'); 
+                $cartInfo = "Product quantity increased in cart";
             } else {
                 // Ajoute le produit au panier si ce n'est pas déjà le cas
                 $cart = new Cart();
                 $cart->user_id = $user_id;
                 $cart->product_id = $product_id;
                 $cart->quantity = '1';
-    
-
-
                 $cart->save();
                 $cartInfo = "Product Added Successfully";
             }
@@ -56,6 +56,7 @@ class CartController extends Controller
             return redirect()->route('login')->with('error', 'You need to login to add products to the cart.');
         }
     }
+    
     
     
 
@@ -89,36 +90,36 @@ class CartController extends Controller
     
 
 
-    // public function check(Request $request)
-    // {   
-    //     $product = Product::where('id', $request->product_id)->first();
-    //     $stock = $product->quantity;
-    //     if($request->number<=0){
-    //         $check = [
-    //             'check'=>"Enter a valid number",
-    //             'id'=>$request->product_id
-    //         ];
-    //     }
-    //     else if ($stock >= $request->number) {
-            
-    //         DB::table('shopingcards')
-    //         ->where('user_id',Auth::user()->id)
-    //         ->where('product_id',$request->product_id)
-    //         ->update(['quantity'=>$request->number]);
-    //         $check = [
-    //             'check'=>"in stock",
-    //             'id'=>$request->product_id
-    //         ];
-    //     } else {
-    //         $check = [
-    //             'check'=> $request->number . " " . " " . $request->product_name ." unavaible for now ",
-    //             'id'=>$request->product_id
-    //         ];
-    //     }
-
-    //     return redirect()->route('cart.index')->with('check', $check);
-    // }
+   
     
+    public function check(Request $request)
+    {   
+        $product = Product::where('id', $request->product_id)->first();
+        $stock = $product->quantity;
+        if($request->number<=0){
+            $check = [
+                'check'=>"Enter a valid number",
+                'id'=>$request->product_id
+            ];
+        }
+        else if ($stock >= $request->number) {
+            
+            DB::table('carts')
+            ->where('user_id',Auth::user()->id)
+            ->where('product_id',$request->product_id)
+            ->update(['quantity'=>$request->number]);
+            $check = [
+                'check'=>"in stock",
+                'id'=>$request->product_id
+            ];
+        } else {
+            $check = [
+                'check'=> $request->number . " " . " " . $request->product_name ." unavaible for now ",
+                'id'=>$request->product_id
+            ];
+        }
 
+        return redirect()->route('Cart.index')->with('check', $check);
+    }
 
 }

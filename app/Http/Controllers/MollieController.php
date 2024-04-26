@@ -14,20 +14,19 @@ class MollieController extends Controller
     public function mollie(Request $request)
     {
         $user = Auth::user();
-        $amount = $user->products->sum('price');
-    
+        $totalAmount = $user->shopingcards->sum(function ($cart) {
+            return $cart->product->price * $cart->quantity;
+        });    
         // Store the quantity in the session
         $quantity = $user->products->count();
         session()->put('quantity', $quantity);
     
-        // Make sure currency code is in uppercase
         $currency = "EUR";
     
-        // Check if the user is authenticated and has not already used the discount
         if (Auth::check() && !Discount::where('user_id', $user->id)->exists()) {
             // Apply a discount of 15% to the total amount
-            $discountedAmount = $amount * 0.15;
-            $amount -= $discountedAmount;
+            $discountedAmount = $totalAmount * 0.15;
+            $totalAmount -= $discountedAmount;
     
             // Create a record of the discount for the user if they have any orders
             $latestOrder = $user->latestOrder();
@@ -44,7 +43,7 @@ class MollieController extends Controller
         $payment = Mollie::api()->payments->create([
             "amount" => [
                 "currency" => $currency,
-                "value" => number_format($amount, 2, '.', ''),
+                "value" => number_format($totalAmount, 2, '.', ''), 
             ],
             "description" => "Payment for your product",
             "redirectUrl" => route('success'),
@@ -55,44 +54,50 @@ class MollieController extends Controller
         return redirect($payment->getCheckoutUrl(), 303);
     }
 
+
+
     public function success(Request $request)
     {
         $paymentId = session()->get('paymentId');
-        $quantity = session()->get('quantity');
+        $user = Auth::user();
     
         $payment = Mollie::api()->payments->get($paymentId);
     
         if ($payment->isPaid()) {
-            $user = Auth::user();
-            $product_ids = $user->products->pluck('id');
-            $amount = $user->products->sum('price');
-            $order = Order::create(["user_id" => $user->id, "total_amount" => $amount, "status" => 1]);
+            $totalAmount = $user->shopingcards->sum(function ($cart) {
+                return $cart->product->price * $cart->quantity;
+            });
+    
+            $product_ids = $user->shopingcards->pluck('product_id');
+    
+            $order = Order::create(["user_id" => $user->id, "total_amount" => $totalAmount, "status" => 1]);
             $order->products()->attach($product_ids);
     
             // Décrémenter la quantité de produits disponibles
-            foreach ($user->products as $product) {
-                $product->quantity -= 1;
+            foreach ($user->shopingcards as $cart) {
+                $product = $cart->product;
+                $product->quantity -= $cart->quantity;
                 $product->save();
             }
     
-            // Supprimer les produits de l'utilisateur après la commande
-            $user->products()->sync([]);
+            // Supprimer prd  après la commande
+            $user->shopingcards()->delete();
     
             $discount = Discount::where('user_id', $user->id)->exists();
     
-            $paymentObj = new Payment(); 
+            $paymentObj = new Payment();
             $paymentObj->payment_id = $paymentId;
-            $paymentObj->quantity = $quantity;
+            $paymentObj->quantity = $user->shopingcards->sum('quantity');
             $paymentObj->amount = $payment->amount->value;
             $paymentObj->currency = $payment->amount->currency;
             $paymentObj->payment_status = "Completed";
             $paymentObj->payment_method = "Mollie";
-            $paymentObj->user_id = Auth::id();
+            $paymentObj->user_id = $user->id;
             $paymentObj->order_id = $order->id;
     
             if (!$discount) {
                 $discountObj = new Discount();
-                $discountObj->user_id = Auth::id();
+                $discountObj->user_id = $user->id;
                 $discountObj->order_id = $order->id;
                 $discountObj->discount = 15;
                 $discountObj->save();
@@ -105,6 +110,7 @@ class MollieController extends Controller
             return redirect()->route('home');
         }
     }
+    
     
 
     public function cancel()

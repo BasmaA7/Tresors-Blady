@@ -81,5 +81,4 @@ Route::get('/statistiques', [StatistiqueController::class, 'index'])->name('Stat
 Route::resource('users', UserController::class);
 
 Route::get('profile', [ProfileController::class, 'show'])->name('Profile.show');
-
-
+Route::post('/cart/check', [CartController::class, 'check'])->name('cart.check');
