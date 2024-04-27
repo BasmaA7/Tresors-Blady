@@ -64,11 +64,11 @@ class HomeController extends Controller
 
         if (!empty($request->keyword)) {
             $products = Product::where("name", "like", "%" . $request->keyword . "%")->get();
-            return view('Search', compact('products'));
+            return view('Store', compact('products'));
 
         } else {
             $products = Product::all();
-            return view('Search', compact('products', 'categories'));
+            return view('Store', compact('products', 'categories'));
         }
     }
 

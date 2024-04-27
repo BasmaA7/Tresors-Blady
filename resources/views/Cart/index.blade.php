@@ -1,19 +1,15 @@
 @extends('layout.layout')
 @section('content')
-    @if ($count == 0)
-        <div class="flex flex-col items-center mt-5 mb-5">
-            <h1 class="text-4xl font-extrabold dark:text-white">Your cart is empty</h1>
-            <img src="https://cdn-icons-png.flaticon.com/512/11329/11329060.png" alt="">
-            <a href="{{ route('home') }}"><button type="button"
-                    class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Shop
-                    now</button>
-            </a>
-        </div>
-    @else
-        @php
-            $totalcart = 0; // Initialiser la variable $totalcart à zéro
-        @endphp
-        <div>
+@if ($count == 0)
+<div class="flex flex-col items-center mt-5 mb-5">
+    <h1 class="text-4xl font-extrabold dark:text-white">Your cart is empty</h1>
+    <img src="https://cdn-icons-png.flaticon.com/512/11329/11329060.png" alt="">
+    <a href="{{ route('home') }}"><button type="button"
+            class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Shop
+            now</button>
+    </a>
+</div>
+@else
             <div>
                 <div class="flex items-end lg:flex-row flex-col justify-end " id="cart">
                     <div div
