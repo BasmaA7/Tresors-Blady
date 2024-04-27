@@ -73,7 +73,6 @@ class MollieController extends Controller
             $order = Order::create(["user_id" => $user->id, "total_amount" => $totalAmount, "status" => 1]);
             $order->products()->attach($product_ids);
     
-            // Décrémenter la quantité de produits disponibles
             foreach ($user->shopingcards as $cart) {
                 $product = $cart->product;
                 $product->quantity -= $cart->quantity;

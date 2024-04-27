@@ -43,8 +43,11 @@
                   </li>
 
                   <li><a class="hover:text-gray-200 cursor-pointer" href="{{route('store')}}">Store</a></li>
-                  <li><a  href="" class="hover:text-gray-200 cursor-pointer">Favoris</a></li>
+                  <li><a  href="{{route('About')}}" class="hover:text-gray-200 cursor-pointer">About Us</a></li>
                   <li><a href="{{route('ContactUs')}}"   class="hover:text-gray-200 cursor-pointer">Contact Us</a></li>
+                  @auth
+                  <li><a href="{{route('showDash')}}"   class="hover:text-gray-200 cursor-pointer">Dashboard</a></li>
+                  @endauth
               </ul>
 
               <!-- Header Icons -->

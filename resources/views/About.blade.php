@@ -3,24 +3,33 @@
 @extends('layout.layout')
 @section('content')
 
-<section class="bg-gray-100">
-  <div class="container mx-auto py-16 px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-8">
-          <div class="max-w-lg">
-              <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">About Us</h2>
-              <p class="mt-4 text-gray-600 text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis
-                  eros at lacus feugiat hendrerit sed ut tortor. Suspendisse et magna quis elit efficitur consequat.
-                  Mauris eleifend velit a pretium iaculis. Donec sagittis velit et magna euismod, vel aliquet nulla
-                  malesuada. Nunc pharetra massa lectus, a fermentum arcu volutpat vel.</p>
-              <div class="mt-8">
-                  <a href="#" class="text-blue-500 hover:text-blue-600 font-medium">Learn more about us
-                      <span class="ml-2">&#8594;</span></a>
-              </div>
+<div class="py-16 bg-white">  
+    <div class="container m-auto px-6 text-gray-600 md:px-12 xl:px-6">
+        <div class="space-y-6 md:space-y-0 md:flex md:gap-6 lg:items-center lg:gap-12">
+          <div class="md:5/12 lg:w-5/12">
+            <img src="{{ URL::asset('asset/images/about.webp') }}" alt="image" loading="lazy" width="" height="">
           </div>
-          <div class="mt-12 md:mt-0">
-              <img src="https://images.unsplash.com/photo-1531973576160-7125cd663d86" alt="About Us Image" class="object-cover rounded-lg shadow-md">
+          <div class="w-2/4">
+            <h2 class="text-2xl text-gray-900 font-bold md:text-4xl">Nuxt development is carried out by passionate developers</h2>
+            <p class="mt-6 text-gray-600">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum omnis voluptatem accusantium nemo perspiciatis delectus atque autem! Voluptatum tenetur beatae unde aperiam, repellat expedita consequatur! Officiis id consequatur atque doloremque!</p>
+            <p class="mt-4 text-gray-600"> Nobis minus voluptatibus pariatur dignissimos libero quaerat iure expedita at? Asperiores nemo possimus nesciunt dicta veniam aspernatur quam mollitia.</p>
           </div>
-      </div>
+        </div>
+    </div>
   </div>
-</section>
+<div class="py-16 bg-white">  
+    <div class="container m-auto px-6 text-gray-600 md:px-12 xl:px-6">
+        <div class="space-y-6 md:space-y-0 md:flex md:gap-6 lg:items-center lg:gap-12">
+         
+            <div class="w-2/4">
+                <h2 class="text-2xl text-gray-900 font-bold md:text-4xl">Nuxt development is carried out by passionate developers</h2>
+            <p class="mt-6 text-gray-600">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum omnis voluptatem accusantium nemo perspiciatis delectus atque autem! Voluptatum tenetur beatae unde aperiam, repellat expedita consequatur! Officiis id consequatur atque doloremque!</p>
+            <p class="mt-4 text-gray-600"> Nobis minus voluptatibus pariatur dignissimos libero quaerat iure expedita at? Asperiores nemo possimus nesciunt dicta veniam aspernatur quam mollitia.</p>
+          </div>
+          <div class="md:5/12 lg:w-5/12">
+            <img src="{{ URL::asset('asset/images/about2.webp') }}" alt="image" loading="lazy" width="" height="">
+          </div>
+        </div>
+    </div>
+  </div>
 @endsection

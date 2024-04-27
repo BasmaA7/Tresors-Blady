@@ -37,10 +37,13 @@ class RegisterController extends Controller
       
         $user = $this->userRepository->create($userData);
 
-        // $adminRole = Role::where('name', 'admin')->first();
-        // $user->roles()->attach($adminRole);
-        $clientRole = Role::where('name', 'client')->first();
-        $user->roles()->attach($clientRole);
+        $clientRole = Role::where('name', 'user')->first();
+        $user->role()->associate($clientRole);
+        $user->save();
+        // $admintRole = Role::where('name', 'admin')->first();
+        // $user->role()->associate($admintRole);
+        // $user->save();
+        
 
         return redirect('/home')->with('success', 'Registration successful! Welcome to our site.');
 

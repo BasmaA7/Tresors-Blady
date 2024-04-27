@@ -16,7 +16,7 @@ class ClientMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         
-            if(Auth()->user()->roles=='client'){
+            if(Auth()->user()->role_id==2){
                 return $next($request);   
     
             }

@@ -24,9 +24,9 @@ class UserProductController extends Controller
     public function store()
     {
         $categories = Category::all();
-        $products = $this->productRepository->paginate(10); // Paginate with 10 products per page
+        $products = $this->productRepository->paginate(6); 
 
-        return view('store', compact('categories', 'products'));
+        return view('search', compact('categories', 'products'));
     }
     public function search(Request $request)
 {

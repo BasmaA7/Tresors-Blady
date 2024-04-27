@@ -26,8 +26,10 @@ class CategorieController extends Controller
 
     public function show($id)
     {
-        $category = $this->categoryRepository->find($id);
-        return view('Admin.Categories.index', compact('category'));
+
+
+        $categories = $this->categoryRepository->find($id);
+        return view('Admin.Categories.index', compact('categories'));
     }
 
     public function create()

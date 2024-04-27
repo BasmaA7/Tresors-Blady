@@ -105,10 +105,10 @@
                                                 {{ $cart->product->name }} x {{ $cart->quantity }}</p>
                                             <p class="text-base leading-none text-gray-800 dark:text-white">
                                                 @php
-                                                    $total = $cart->product->price * $cart->quantity;
-                                                    $totalcart += $total; 
+                                                    $totalAmount = $cart->product->price * $cart->quantity;
+                                                    $totalAmount += $totalAmount; 
                                                 @endphp
-                                                {{ $total }} MAD
+                                                {{ $totalAmount }} MAD
                                             </p>
                                         </div>
                                     @endif
@@ -122,14 +122,14 @@
                                         @if (Auth::check() && session('totalAmount'))
                                             {{ session('totalAmount') }}$
                                         @else
-                                            {{ $totalcart }} MAD
+                                            {{ $totalAmount }} MAD
                                         @endif
                                     </p>
                                 </div>
                                 <form action="{{ route('checkout') }}" method="get">
                                     @csrf
                                     <input type="hidden" name="quantity" value="{{ $count }}">
-                                    <input type="hidden" name="total" value="{{ $totalcart }}">
+                                    <input type="hidden" name="total" value="{{ $totalAmount }}">
                                     <button type="submit"
                                         class="text-base leading-none w-full py-5 bg-bgColor border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white dark:hover:bg-gray-700 ">Checkout</button>
                                 </form>
