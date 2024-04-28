@@ -70,6 +70,9 @@ Route::get('/about', function (CategoryRepositoryInterface $categoryRepository) 
   Route::get('/statistiques', [StatistiqueController::class, 'index'])->name('Statistique');
 });
 
+
+Route::get('/categories/{id}/products', [CategorieController::class, 'showProducts'])->name('categories.Products');
+
 //Client
 Route::group(['middleware' => ['auth', 'client']], function () {
   Route::post('/apply-coupon', [CartController::class, 'applyCoupon'])->name('apply_coupon');

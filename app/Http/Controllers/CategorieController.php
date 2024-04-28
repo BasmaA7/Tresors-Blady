@@ -70,10 +70,8 @@ class CategorieController extends Controller
         $imagePath = $category->image;
     
         if ($request->hasFile('image')) {
-            // Supprimer l'ancienne image
             Storage::disk('public')->delete($category->image);
     
-            // Enregistrer la nouvelle image
             $imagePath = $request->file('image')->store('categories', 'public');
         }
     
@@ -91,10 +89,18 @@ class CategorieController extends Controller
     {
         $this->categoryRepository->delete($id);
     
-        // Récupérer à nouveau toutes les catégories après la suppression
         $categories = $this->categoryRepository->all();
     
         return redirect()->route('categories.index')->with('success', 'Category deleted successfully')->with('categories', $categories);
+    }
+    public function showProducts($id)
+    {
+        $categories = $this->categoryRepository->all();
+
+        $category = $this->categoryRepository->find($id); 
+        $products = $category->products()->paginate(8); 
+    
+        return view('Products', compact('category', 'products','categories')); 
     }
     
 }

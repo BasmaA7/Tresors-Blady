@@ -34,7 +34,7 @@
                 <!-- card start -->
                 @foreach ($categories as $category)
                     <div class="col-span-12 sm:col-span-6 md:col-span-2 lg:col-span-2 xl:col-span-2">
-                        <a href="{{ route('categories.show', $category->id) }}">
+                        <a href="{{ route('categories.Products', $category->id) }}">
                             <div class="flex flex-col items-center justify-center">
                                 <div class="w-44 h-44 flex justify-center items-center">
                                     <img src="{{ 'storage/' . $category->image }}"
